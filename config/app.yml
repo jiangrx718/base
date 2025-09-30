@@ -1,0 +1,50 @@
+app: tools
+debug: true
+port: 8080
+db:
+  tools:
+    dialect: mysql
+    dsn: root:Root2024@tcp(mysql:3306)/tools?charset=utf8mb4&parseTime=True&loc=Asia%2FShanghai
+cron:
+  switch: true
+python-path: /usr/bin/python
+script: /data/scripts/python
+base-dir: /data/workspace/zhongtu1/nc_path
+model-train: /data/workspace/zhongtu1/model_train
+backup-db: /data/workspace/zhongtu1/mysql-8.0.34/tools_db_backup.sh
+service-http:
+  timeout: 130s  # 超时时间，单位s
+  retry-interval: 5s # 超时重试间隔 单位s
+  max-retries: 3 # 超时重试次数
+service:
+  # 请求方案的基础url
+  plan-base-url: http://10.1.17.108:8000/dyapi/gw-cloud-plan/app/plan/dyplanb/getById/519a0d836f124df680db
+  # plan-base-url: http://www.baidu.com
+  # 河道水情表-等时段标准化数据
+  river-url: http://jcglwg.ybzx.mwr.cn/metaserver-yun/api/server/api/standard/river
+  # 水库水情表-等时段标准化数据
+  river-water-url: http://jcglwg.ybzx.mwr.cn/metaserver-yun/api/server/api/standard/rsvr
+  # 堰闸水情表-等时段标准化数据
+  weir-gate-url: http://jcglwg.ybzx.mwr.cn/metaserver-yun/api/server/api/standard/was
+  # 根据wkt查询预报面雨量
+  #rainfall-url: http://gdpweb.mwr.cn/prodApi/B7125A5F13E44603BCB6D3EE140D08C9
+  # rainfall-url: http://gdpweb.mwr.cn/api/getTifData
+  rainfall-url: http://gdpweb.mwr.cn/api/obs_hour_rain
+  # 未来降水相关接口
+  # 期次
+  forecast-period-url: http://gdpweb.mwr.cn/api/fst/mdt/v2/
+  # 未来降水
+  forecast-precipitation-url: http://gdpweb.mwr.cn/api/calfst/gpr/v2/
+  # 根据测站和发布时间查询水情预报成果注释
+  st-forecastc-f-url: http://gdpweb.mwr.cn/api/ods/st_forecastc_f
+  # 根据测站编码和预报注释查询水库、河道、堰闸的Z、Q
+  st-forecast-f-url: http://gdpweb.mwr.cn/api/ods/st_forecast_f
+
+  # 应用code
+  app-code: ed47024c55d248fe914ce22be29ff649
+  # 应用token-st-forecast-f-url、st-forecastc-f-url、forecast-precipitation-url、forecast-period-url、rainfall-url
+  app-token: mlGaMWJqtGvqfS7Wz4l2
+log:
+  outputs:
+    - stdout
+    - ./logs/tools-api.log

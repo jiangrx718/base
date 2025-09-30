@@ -1,0 +1,8 @@
+web
+/logs/
+/tmp/
+/.idea/
+.log
+*.env
+.DS_Store
+*.log

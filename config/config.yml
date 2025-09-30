@@ -1,0 +1,32 @@
+app: web
+debug: true
+db:
+  dialect: mysql
+  dsn: root:123456@tcp(127.0.0.1:3306)/tools?charset=utf8mb4&parseTime=True&loc=Local
+redis:
+  client:
+    web:
+      addr:
+        - 127.0.0.1:6379
+      db: 0
+      password:
+      type: single-node
+  default: default
+cron:
+  switch: false
+log:
+  level: debug
+  outputs:
+    - stdout
+    - ./logs/api.log
+auth:
+  jwt:
+    expire_hour: 720
+    secret: jiang_ruoxi
+elasticsearch:
+  engine:
+    demo_indices: rx.demo.alias
+    addresses:
+      - http://127.0.0.1:9200
+    username: elastic
+    password: LYBGheLm0!
