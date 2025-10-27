@@ -21,7 +21,7 @@ func NewHandler(engine *gin.Engine) gins.Handler {
 
 func (h *Handler) RegisterRoutes() {
 	config := cors.DefaultConfig()
-	config.AllowHeaders = append(config.AllowHeaders)
+	config.AllowHeaders = append([]string{}, config.AllowHeaders...)
 	config.AllowAllOrigins = true
 	h.engine.Use(cors.New(config))
 
