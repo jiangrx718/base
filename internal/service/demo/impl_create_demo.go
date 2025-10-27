@@ -1,10 +1,11 @@
 package demo
 
 import (
+	"context"
+
 	"base/gopkg/log"
 	"base/gopkg/services"
 	"base/internal/model"
-	"context"
 
 	"go.uber.org/zap"
 )
@@ -17,5 +18,6 @@ func (s *Service) CreateDemo(ctx context.Context, name string, fileType int, pro
 		return services.Failed(ctx, err)
 	}
 
+	log.Sugar().Info(ctx, logPrefix, zap.Any("demo dao Create() success", writingOnlineId))
 	return services.Success(ctx, writingOnlineId)
 }

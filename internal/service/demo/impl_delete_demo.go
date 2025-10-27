@@ -1,16 +1,16 @@
 package demo
 
 import (
-	"base/gopkg/log"
-	"base/gopkg/services"
 	"context"
 	"errors"
+
+	"base/gopkg/log"
+	"base/gopkg/services"
 
 	"go.uber.org/zap"
 )
 
 func (s *Service) DeleteDemo(ctx context.Context, demoId string) (services.Result, error) {
-
 	logPrefix := "/internal/service/demo: Service.DeleteDemo()"
 
 	demoData, err := s.demoDao.Get(ctx, demoId)
